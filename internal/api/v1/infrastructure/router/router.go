@@ -48,3 +48,8 @@ func (r *Router) BindSwaggerRoutes() {
 func (r *Router) BindMetricsRoutes(m *controllers.MetricController) {
 	r.e.GET(prefix+"/metrics", m.GetMetrics())
 }
+
+func (r *Router) BindChatBotRoutes(cc *controllers.ChatBotController) {
+	r.e.POST(prefix+"/chat", r.am.Authenticate(), cc.SendMessage)
+	r.e.GET(prefix+"/chat", r.am.Authenticate(), cc.GetChat)
+}

@@ -53,7 +53,7 @@ func (s *ChatBotService) GetAnswer(ctx context.Context, email string, message *C
 		return nil, &exceptions.InternalServerError
 	}
 
-	if err := s.storageRepo.AddNewMessageToChatByEmail(ctx, email, answer[len(answer)-1]); err != nil {
+	if err := s.storageRepo.AddNewMessageToChatByEmail(ctx, email, &answer[len(answer)-1]); err != nil {
 		return nil, &exceptions.InternalServerError
 	}
 
